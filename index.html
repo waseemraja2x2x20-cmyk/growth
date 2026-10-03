@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f5ef">
+    <meta name="description" content="Notes on learning, making things, and finding a little more room to grow.">
+    <title>Waseem — Notes on growth</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f7f5ef;
+        --ink: #20241f;
+        --muted: #73776d;
+        --line: #deded4;
+        --green: #526b50;
+        --serif: Georgia, "Times New Roman", serif;
+        --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        width: min(100% - 48px, 1100px);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 82px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .wordmark {
+        font-family: var(--serif);
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: -0.7px;
+        text-decoration: none;
+      }
+
+      .nav {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 13px;
+        text-decoration: none;
+        transition: color 160ms ease;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        color: var(--ink);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        gap: 64px;
+        align-items: end;
+        padding: 104px 0 90px;
+      }
+
+      .eyebrow,
+      .section-label,
+      .post-category {
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin: 17px 0 22px;
+        font-family: var(--serif);
+        font-size: clamp(52px, 8vw, 92px);
+        font-weight: 400;
+        letter-spacing: -5px;
+        line-height: 0.99;
+      }
+
+      .hero-copy {
+        max-width: 570px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.8;
+      }
+
+      .hero-aside {
+        padding: 18px 0 4px 22px;
+        border-left: 1px solid var(--line);
+        color: var(--muted);
+        font-family: var(--serif);
+        font-size: 18px;
+        font-style: italic;
+        line-height: 1.6;
+      }
+
+      .posts {
+        padding: 35px 0 100px;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 28px;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 0;
+        font-family: var(--serif);
+        font-size: 34px;
+        font-weight: 400;
+        letter-spacing: -1px;
+      }
+
+      .section-heading span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .post-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+      }
+
+      .post-card {
+        min-height: 270px;
+        padding: 27px 28px 28px 0;
+      }
+
+      .post-card + .post-card {
+        padding-left: 28px;
+        border-left: 1px solid var(--line);
+      }
+
+      .post-category {
+        margin-bottom: 18px;
+      }
+
+      .post-card h3 {
+        margin-bottom: 12px;
+        font-family: var(--serif);
+        font-size: 27px;
+        font-weight: 400;
+        letter-spacing: -0.6px;
+        line-height: 1.18;
+      }
+
+      .post-card h3 a {
+        text-decoration: none;
+      }
+
+      .post-card h3 a:hover,
+      .post-card h3 a:focus-visible {
+        color: var(--green);
+      }
+
+      .post-card p {
+        margin-bottom: 20px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .read-time {
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+
+      .article-list {
+        border-top: 1px solid var(--line);
+      }
+
+      .full-post {
+        max-width: 690px;
+        padding: 42px 0;
+        border-bottom: 1px solid var(--line);
+        scroll-margin-top: 24px;
+      }
+
+      .full-post h3 {
+        margin-bottom: 18px;
+        font-family: var(--serif);
+        font-size: 32px;
+        font-weight: 400;
+        letter-spacing: -0.8px;
+      }
+
+      .full-post > p:not(.post-category) {
+        margin-bottom: 14px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.85;
+      }
+
+      .full-post > p:last-child {
+        margin-bottom: 0;
+      }
+
+      .about {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 60px;
+        padding: 42px 0 74px;
+        border-top: 1px solid var(--line);
+      }
+
+      .about h2 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: 34px;
+        font-weight: 400;
+        letter-spacing: -1px;
+      }
+
+      .about p {
+        max-width: 600px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0 30px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      footer a {
+        text-decoration-color: var(--line);
+        text-underline-offset: 3px;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 700px) {
+        .page {
+          width: min(100% - 36px, 540px);
+        }
+
+        .topbar {
+          min-height: 70px;
+        }
+
+        .nav {
+          gap: 17px;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 27px;
+          padding: 76px 0 66px;
+        }
+
+        h1 {
+          letter-spacing: -3px;
+        }
+
+        .hero-aside {
+          max-width: 330px;
+          padding-top: 0;
+          padding-bottom: 0;
+          font-size: 16px;
+        }
+
+        .posts {
+          padding-bottom: 65px;
+        }
+
+        .post-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .post-card,
+        .post-card + .post-card {
+          min-height: 0;
+          padding: 24px 0;
+          border-bottom: 1px solid var(--line);
+          border-left: 0;
+        }
+
+        .about {
+          grid-template-columns: 1fr;
+          gap: 17px;
+          padding-bottom: 55px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .page {
+          width: min(100% - 28px, 540px);
+        }
+
+        .wordmark {
+          font-size: 19px;
+        }
+
+        .nav {
+          gap: 12px;
+        }
+
+        .nav a {
+          font-size: 12px;
+        }
+
+        .section-heading span {
+          display: none;
+        }
+
+        footer {
+          gap: 14px;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="wordmark" href="#home" aria-label="Waseem's blog home">Waseem<span aria-hidden="true">.</span></a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#writing">Writing</a>
+          <a href="#about">About</a>
+        </nav>
+      </header>
+
+      <main id="home">
+        <section class="hero" aria-labelledby="intro-title">
+          <div>
+            <p class="eyebrow">A personal journal</p>
+            <h1 id="intro-title">Curious about the ways we grow.</h1>
+            <p class="hero-copy">Hi, I’m Waseem. This is my little corner of the internet for notes on learning, making things, and paying attention to the everyday.</p>
+          </div>
+          <aside class="hero-aside">“The secret of getting ahead is getting started.”</aside>
+        </section>
+
+        <section class="posts" id="writing" aria-labelledby="writing-title">
+          <div class="section-heading">
+            <h2 id="writing-title">Recent writing</h2>
+            <span>A few things I’ve been thinking about</span>
+          </div>
+          <div class="post-grid">
+            <article class="post-card">
+              <p class="post-category">Perspective</p>
+              <h3><a href="#small-steps">Small steps still move you forward</a></h3>
+              <p>On letting go of the perfect plan and finding momentum in the things we can do today.</p>
+              <span class="read-time">4 minute read</span>
+            </article>
+            <article class="post-card">
+              <p class="post-category">Work &amp; life</p>
+              <h3><a href="#making-space">Making a little room to think</a></h3>
+              <p>A few notes on protecting quiet time in a world that always seems to want more of our attention.</p>
+              <span class="read-time">5 minute read</span>
+            </article>
+            <article class="post-card">
+              <p class="post-category">Getting started</p>
+              <h3><a href="#start-before-ready">Start before you feel ready</a></h3>
+              <p>Why beginning with what you have can teach you more than waiting for the right moment.</p>
+              <span class="read-time">3 minute read</span>
+            </article>
+          </div>
+          <div class="article-list">
+            <article class="full-post" id="small-steps">
+              <p class="post-category">Perspective</p>
+              <h3>Small steps still move you forward</h3>
+              <p>It’s easy to think progress has to look dramatic to count. A big plan, a clean start, a version of yourself who suddenly has it all figured out. Most of the time, though, progress is quieter than that.</p>
+              <p>It’s the page you write, the question you ask, or the ten minutes you give to something you care about. Small actions don’t solve everything at once, but they give you something real to build on. Start with what fits into today. Tomorrow can take care of itself.</p>
+            </article>
+            <article class="full-post" id="making-space">
+              <p class="post-category">Work &amp; life</p>
+              <h3>Making a little room to think</h3>
+              <p>Our attention gets pulled in a dozen directions before the day has properly begun. I’ve been trying to leave a little unclaimed space in my routine: a walk without a podcast, a few minutes with a notebook, or simply one task at a time.</p>
+              <p>That space isn’t wasted time. It’s where thoughts have a chance to settle and new ones can show up. It doesn’t take a perfect routine; even a small pause can make the rest of the day feel more intentional.</p>
+            </article>
+            <article class="full-post" id="start-before-ready">
+              <p class="post-category">Getting started</p>
+              <h3>Start before you feel ready</h3>
+              <p>Waiting until you feel completely prepared can become its own kind of delay. Often, the first attempt is how you find out what you actually need to learn.</p>
+              <p>Begin small enough that you can take the first step now. You can adjust as you go, and you’ll have something concrete to improve instead of an imagined perfect version waiting somewhere in the future.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="about" id="about" aria-labelledby="about-title">
+          <h2 id="about-title">A little about me</h2>
+          <p>I’m Waseem, a curious person figuring things out one day at a time. I made this space to collect ideas, share what I’m learning, and remember that growth is usually a work in progress.</p>
+        </section>
+      </main>
+
+      <footer>
+        <span>© 2026 Waseem. Made with care.</span>
+        <a href="#home">Back to top ↑</a>
+      </footer>
+    </div>
+  </body>
+</html>
